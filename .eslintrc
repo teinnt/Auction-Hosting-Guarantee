@@ -1,0 +1,22 @@
+{
+  "ignorePatterns": ["node_modules/**/*"],
+  "plugins": ["prettier", "@typescript-eslint", "cypress"],
+  "extends": ["airbnb-typescript", "react-app", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "rules": {
+    "max-len": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}
