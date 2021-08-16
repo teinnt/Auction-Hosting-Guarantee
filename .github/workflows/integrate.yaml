@@ -2,15 +2,14 @@ name: Pull Request on Branch Master
 
 on:
   pull_request:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   build-the-app:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.0.0
+      - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
       - uses: borales/actions-yarn@v2.0.0
@@ -22,25 +21,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.3.0
         with:
-          node-version: 12
-      - run: yarn
-      - run: yarn test
+          cmd: test
 
   run-linters:
     needs: build-the-app
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run linters
-        uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.3.0
         with:
-          node-version: 12
-      - run: yarn
-      - run: yarn run lint
+          cmd: run lint
 
   merge-code-to-the-master-branch:
     needs:
@@ -49,8 +43,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Automerge
-        uses: everlytic/branch-merge@1.1.0
+      - uses: everlytic/branch-merge@1.1.0
         with:
           github_token: ${{ github.token }}
           source_ref: ${{ github.ref }}
