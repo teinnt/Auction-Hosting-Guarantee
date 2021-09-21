@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
-import { ApolloProvider } from 'react-apollo-hooks'
+import { ApolloProvider } from '@apollo/client'
 
 import './index.css'
 

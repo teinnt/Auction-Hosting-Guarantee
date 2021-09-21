@@ -1,27 +1,22 @@
-import React from 'react'
+import * as React from 'react'
+import { useQuery } from '@apollo/client'
 
-import { useGetUser, GetUserMe } from '../../generated/graphql'
+import GET_USER from '../../graphql/queries'
+import { GetUsers } from '../../graphql/__generated__/GetUsers'
 
-// Props are typed according to GraphQL query
-type UserProps = {
-  user: GetUserMe
-}
+interface UserDetailsProps {}
 
-// Components are typed with props
-const UserComponent = ({ user }: UserProps) => <p>Hello {user.name}</p>
+const UserDetails: React.FC<UserDetailsProps> = ({}) => {
+  const { loading, error, data } = useQuery<GetUsers>(GET_USER)
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
-  // We got autocompletion for data and graphql variables here
-  const { data, loading } = useGetUser()
-
+  if (data) {
+    console.log(data)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        {/** Accessing and undefined key here will break the build */}
-        {loading && <p>Loading</p>}
-        {data && data.me && <UserComponent user={data.me} />}
-      </header>
+    <div>
+      <div>Hello {data?.users[0].userName}</div>
     </div>
   )
 }
+
+export default UserDetails
