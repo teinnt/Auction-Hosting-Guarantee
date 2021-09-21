@@ -6,6 +6,6 @@ import Home from '../pages/Home'
 
 test('renders learn react link', () => {
   render(<Home />)
-  const linkElement = screen.getByText(/AUCKLAND HOSTING AND GUARANTEE/i)
+  const linkElement = screen.getByText(/AUCTION HOSTING AND GUARANTEE/i)
   expect(linkElement).toBeInTheDocument()
 })

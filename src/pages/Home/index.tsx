@@ -17,7 +17,7 @@ function Home(): JSX.Element {
 
   return (
     <div>
-      <Text fontSize="6xl">AUCKLAND HOSTING AND GUARANTEE</Text>
+      <Text fontSize="6xl">AUCTION HOSTING AND GUARANTEE</Text>
 
       <Box p={4} display={{ md: 'flex' }}>
         <Button colorScheme="blue" onClick={() => goToPage(PageToGo.AUTH_HOST)}>
