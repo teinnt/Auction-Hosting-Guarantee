@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  build-test-linter:
     name: Test
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +25,7 @@ jobs:
 
   merge-code-to-the-master-branch:
     needs:
-      - Test
+      - build-test-linter
     runs-on: ubuntu-latest
 
     steps:
