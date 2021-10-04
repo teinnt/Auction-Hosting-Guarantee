@@ -8,14 +8,17 @@ import './index.css'
 import App from './pages/App'
 import { client } from './utils'
 import ThemeProvider from './theme'
+import AuthProvider from './context/Auth/AuthProvider'
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
       <ApolloProvider client={client}>
-        <HashRouter>
-          <App />
-        </HashRouter>
+        <AuthProvider>
+          <HashRouter>
+            <App />
+          </HashRouter>
+        </AuthProvider>
       </ApolloProvider>
     </ThemeProvider>
   </React.StrictMode>,

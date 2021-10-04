@@ -1,12 +1,13 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+import { sessions } from '.'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:63145/graphql',
 })
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token')
+  const token = sessions.retrieveToken()
 
   return {
     headers: {

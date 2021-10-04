@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom'
 import { Text, Box, Button } from '@chakra-ui/react'
 
 enum PageToGo {
-  AUTH_HOST = '/auth/host',
-  AUTH_BUYER = '/auth/buyer',
-  LOBBY = '/lobby',
+  LOGIN = 'login',
+  REGISTER = 'register',
+  LOBBY = 'lobby',
 }
 
 function Home(): JSX.Element {
@@ -17,17 +17,17 @@ function Home(): JSX.Element {
 
   return (
     <div>
-      <Text fontSize="6xl">AUCTION HOSTING AND GUARANTEE</Text>
+      <Text fontSize="5xl">AUCTION HOSTING AND GUARANTEE</Text>
 
       <Box p={4} display={{ md: 'flex' }}>
-        <Button colorScheme="blue" onClick={() => goToPage(PageToGo.AUTH_HOST)}>
-          I am an auction host
+        <Button colorScheme="blue" onClick={() => goToPage(PageToGo.LOGIN)}>
+          Login
         </Button>
-        <Button colorScheme="blue" onClick={() => goToPage(PageToGo.AUTH_BUYER)}>
-          I am a buyer
+        <Button colorScheme="blue" onClick={() => goToPage(PageToGo.REGISTER)}>
+          Register
         </Button>
         <Button colorScheme="blue" onClick={() => goToPage(PageToGo.LOBBY)}>
-          Just let me in
+          Lobby
         </Button>
       </Box>
     </div>

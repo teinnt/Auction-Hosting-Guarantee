@@ -5,41 +5,27 @@ on:
     branches: [master]
 
 jobs:
-  build-the-app:
+  build-test-linter:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
-      - uses: borales/actions-yarn@v2.0.0
+      - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build
-
-  run-unit-test:
-    needs: build-the-app
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: test
-
-  run-linters:
-    needs: build-the-app
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: run lint
 
   merge-code-to-the-master-branch:
     needs:
-      - run-unit-test
-      - run-linters
+      - build-test-linter
     runs-on: ubuntu-latest
 
     steps:
