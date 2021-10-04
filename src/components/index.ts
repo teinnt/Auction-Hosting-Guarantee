@@ -1,4 +1,2 @@
-import Login from './Form/Login'
-import Register from './Form/Register'
-
-export { Login, Register }
+export { default as FormControl } from './Form/FormControl'
+export { default as ProtectedRoute } from './ProtectedRoute'

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useQuery } from '@apollo/client'
 
-import GET_USER from '../../graphql/queries'
-import { GetUsers } from '../../graphql/__generated__/GetUsers'
+import { GET_USER } from '../../graphql/queries/queries'
+import { GetUsers } from '../../graphql/queries/__generated__/GetUsers'
 
 interface UserDetailsProps {}
 
