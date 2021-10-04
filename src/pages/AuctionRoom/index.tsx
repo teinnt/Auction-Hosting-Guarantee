@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
 import { HubConnection } from '@microsoft/signalr'
 import { useQuery } from '@apollo/client'
 import { Text, Box, Button, Grid, GridItem, Center, Image, Alert, AlertIcon, Spinner } from '@chakra-ui/react'
 
 import { FormControl } from '../../components'
-import { icons, mathUtils, routerUtils, sessions, signalR } from '../../utils'
+import { client, icons, mathUtils, routerUtils, sessions, signalR } from '../../utils'
 import {
   GetAuction,
   GetAuction_auction_rounds,
@@ -38,8 +39,6 @@ const Lobby: React.FC<RoomProps> = () => {
     variables: { auctionId },
   })
 
-  console.log(round)
-
   useEffect(() => {
     const setUpConnection = async () => {
       await setupMessagingHub()
@@ -59,6 +58,7 @@ const Lobby: React.FC<RoomProps> = () => {
       const currentRound = { ...round }
       currentRound.currentBid = bid
       setRound(() => currentRound as GetAuction_auction_rounds)
+      client.reFetchObservableQueries()
     }
 
     connection.on('addNewBid', updateBid)

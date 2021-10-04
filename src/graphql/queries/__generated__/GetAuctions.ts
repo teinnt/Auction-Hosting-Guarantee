@@ -8,11 +8,11 @@
 // ====================================================
 
 export interface GetAuctions_auctions {
-  __typename: "Auction";
-  id: string | null;
-  name: string | null;
+  __typename: 'Auction'
+  id: string | null
+  name: string | null
 }
 
 export interface GetAuctions {
-  auctions: GetAuctions_auctions[];
+  auctions: GetAuctions_auctions[]
 }

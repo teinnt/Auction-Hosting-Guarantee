@@ -8,9 +8,9 @@
 // ====================================================
 
 export interface jwtFields {
-  __typename: "JsonWebToken";
-  id: string | null;
-  token: string | null;
-  expires: any;
-  userName: string | null;
+  __typename: 'JsonWebToken'
+  id: string | null
+  token: string | null
+  expires: any
+  userName: string | null
 }

@@ -1,8 +1,7 @@
+/* eslint-disable no-console */
 import { HubConnectionBuilder, IHttpConnectionOptions } from '@microsoft/signalr'
 
 import * as sessions from './sessions'
-
-interface Options {}
 
 const startSignalRConnection = (connection: any) =>
   connection
