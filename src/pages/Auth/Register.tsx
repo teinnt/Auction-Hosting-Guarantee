@@ -7,7 +7,7 @@ import AuthContext from '../../context/Auth'
 import { FormControl } from '../../components'
 import { REGISTER_USER } from '../../graphql/mutations/auth'
 
-function Register() {
+function Register(): JSX.Element {
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

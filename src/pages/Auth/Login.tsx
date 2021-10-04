@@ -7,7 +7,7 @@ import AuthContext from '../../context/Auth'
 import { FormControl } from '../../components'
 import { LOGIN_USER } from '../../graphql/mutations/auth'
 
-function Login() {
+function Login(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')

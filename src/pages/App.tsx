@@ -7,7 +7,7 @@ import { Login, Register, Home, Lobby, NotFound, UserDetails, AuctionRoom } from
 function App(): JSX.Element {
   return (
     <Switch>
-      <Route exact path="/" component={Lobby} />
+      <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <ProtectedRoute exact path="/lobby" component={Lobby} />

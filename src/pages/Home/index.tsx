@@ -5,6 +5,7 @@ import { Text, Box, Button } from '@chakra-ui/react'
 enum PageToGo {
   LOGIN = 'login',
   REGISTER = 'register',
+  LOBBY = 'lobby',
 }
 
 function Home(): JSX.Element {
@@ -24,6 +25,9 @@ function Home(): JSX.Element {
         </Button>
         <Button colorScheme="blue" onClick={() => goToPage(PageToGo.REGISTER)}>
           Register
+        </Button>
+        <Button colorScheme="blue" onClick={() => goToPage(PageToGo.LOBBY)}>
+          Lobby
         </Button>
       </Box>
     </div>

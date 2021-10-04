@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import { Text, Center, Box, Button, Spinner } from '@chakra-ui/react'
@@ -6,8 +6,8 @@ import { Text, Center, Box, Button, Spinner } from '@chakra-ui/react'
 import { GET_AUCTIONS } from '../../graphql/queries/queries'
 import { GetAuctions } from '../../graphql/queries/__generated__/GetAuctions'
 
-function Lobby() {
-  const { loading, error, data } = useQuery<GetAuctions>(GET_AUCTIONS)
+function Lobby(): JSX.Element {
+  const { loading, data } = useQuery<GetAuctions>(GET_AUCTIONS)
 
   const history = useHistory()
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
 import { HubConnection } from '@microsoft/signalr'
 import { useQuery } from '@apollo/client'
@@ -15,33 +14,40 @@ import { GET_AUCTION } from '../../graphql/queries/queries'
 
 function onConnectionError(error: any) {
   if (error && error.message) {
-    console.error(error.message)
+    // TODO: Alert
   }
 }
 
-interface RoomProps {
-  id: string
-  name: string
-  url: string
-  startTime: string
-  endTime: string
-  description: string
-}
-
-const Lobby: React.FC<RoomProps> = () => {
+function AuctionRoom(): JSX.Element {
   const [round, setRound] = useState<GetAuction_auction_rounds | null>()
   const [bidAmount, setBidAmount] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [hubConnection, setHubConnection] = useState<HubConnection>()
 
   const auctionId = routerUtils.getIdFromUrl()
-  const { loading, error, data } = useQuery<GetAuction>(GET_AUCTION, {
+  const { loading, data } = useQuery<GetAuction>(GET_AUCTION, {
     variables: { auctionId },
   })
 
   useEffect(() => {
+    function bindConnectionMessage(connection: any) {
+      const updateBid = (bid: GetAuction_auction_rounds_currentBid) => {
+        const currentRound = { ...round }
+        currentRound.currentBid = bid
+        setRound(() => currentRound as GetAuction_auction_rounds)
+        client.reFetchObservableQueries()
+      }
+
+      connection.on('addNewBid', updateBid)
+      connection.onclose(onConnectionError)
+    }
+
     const setUpConnection = async () => {
-      await setupMessagingHub()
+      const connection = await signalR.buildAuctionHubConnection(auctionId)
+      bindConnectionMessage(connection)
+      signalR.startSignalRConnection(connection)
+
+      setHubConnection(connection)
     }
 
     if (!hubConnection) {
@@ -51,28 +57,7 @@ const Lobby: React.FC<RoomProps> = () => {
     if (data) {
       setRound(data.auction?.rounds && data.auction?.rounds[data.auction?.currentRound])
     }
-  }, [auctionId, data, hubConnection])
-
-  function bindConnectionMessage(connection: any) {
-    const updateBid = (bid: GetAuction_auction_rounds_currentBid) => {
-      const currentRound = { ...round }
-      currentRound.currentBid = bid
-      setRound(() => currentRound as GetAuction_auction_rounds)
-      client.reFetchObservableQueries()
-    }
-
-    connection.on('addNewBid', updateBid)
-    connection.on('connected', (conversationId: string) => console.log(conversationId))
-    connection.onclose(onConnectionError)
-  }
-
-  const setupMessagingHub = async () => {
-    const connection = await signalR.buildAuctionHubConnection(auctionId)
-    bindConnectionMessage(connection)
-    signalR.startSignalRConnection(connection)
-
-    setHubConnection(connection)
-  }
+  }, [auctionId, data, hubConnection, round])
 
   const isBidValid = () =>
     bidAmount && mathUtils.isNumeric(bidAmount) && Number(bidAmount) > (round?.currentBid?.amount || 0)
@@ -143,4 +128,4 @@ const Lobby: React.FC<RoomProps> = () => {
   )
 }
 
-export default Lobby
+export default AuctionRoom
