@@ -35,35 +35,43 @@ function Register(): JSX.Element {
           <Text fontSize="4xl">Register</Text>
         </Center>
 
-        <form>
-          <Stack spacing={4} p="1rem" backgroundColor="whiteAlpha.900" boxShadow="md">
-            <FormControl value={userName} handleChange={setUserName} placeholder="User Email" type="text" />
-            <FormControl value={email} handleChange={setEmail} placeholder="Email" type="email" />
-            <FormControl value={password} handleChange={setPassword} placeholder="Password" type="password" />
+        <Stack spacing={4} p="1rem" backgroundColor="whiteAlpha.900" boxShadow="md">
+          <FormControl
+            value={userName}
+            handleChange={setUserName}
+            placeholder="User Email"
+            type="text"
+          />
+          <FormControl value={email} handleChange={setEmail} placeholder="Email" type="email" />
+          <FormControl
+            value={password}
+            handleChange={setPassword}
+            placeholder="Password"
+            type="password"
+          />
 
-            <Link textAlign="right" color="blue.600" href="#/login">
-              Already have an account
-            </Link>
+          <Link textAlign="right" color="blue.600" href="#/login">
+            Already have an account
+          </Link>
 
-            {errorMessage ? (
-              <Alert status="error">
-                <AlertIcon />
-                {errorMessage}
-              </Alert>
-            ) : null}
+          {errorMessage ? (
+            <Alert status="error">
+              <AlertIcon />
+              {errorMessage}
+            </Alert>
+          ) : null}
 
-            <Button
-              borderRadius={0}
-              type="button"
-              variant="solid"
-              colorScheme="blue"
-              width="full"
-              onClick={handleRegister}
-            >
-              Register
-            </Button>
-          </Stack>
-        </form>
+          <Button
+            borderRadius={0}
+            type="button"
+            variant="solid"
+            colorScheme="blue"
+            width="full"
+            onClick={handleRegister}
+          >
+            Register
+          </Button>
+        </Stack>
       </Box>
     </Center>
   )

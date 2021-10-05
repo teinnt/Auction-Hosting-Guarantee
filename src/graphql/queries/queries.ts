@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 import { USER } from '../fragments/auth'
 import AUCTION from '../fragments/auction'
 
-const GET_USER = gql`
+const GET_USERS = gql`
   query GetUsers {
     users {
       ...userFields
@@ -16,8 +16,18 @@ const GET_AUCTIONS = gql`
     auctions {
       id
       name
+      endTime
     }
   }
+`
+
+const GET_ME = gql`
+  query getMe {
+    self {
+      ...userFields
+    }
+  }
+  ${USER}
 `
 
 const GET_AUCTION = gql`
@@ -29,4 +39,4 @@ const GET_AUCTION = gql`
   ${AUCTION}
 `
 
-export { GET_USER, GET_AUCTIONS, GET_AUCTION }
+export { GET_USERS, GET_ME, GET_AUCTIONS, GET_AUCTION }

@@ -8,11 +8,12 @@
 // ====================================================
 
 export interface GetUsers_users {
-  __typename: 'User'
-  id: string | null
-  userName: string | null
+  __typename: "User";
+  id: string | null;
+  userName: string | null;
+  phoneNumber: string | null;
 }
 
 export interface GetUsers {
-  users: GetUsers_users[]
+  users: GetUsers_users[];
 }

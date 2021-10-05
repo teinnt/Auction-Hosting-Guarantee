@@ -1,20 +1,17 @@
 import * as React from 'react'
-import { Center, Spinner } from '@chakra-ui/react'
 import { useQuery } from '@apollo/client'
 
-import { GET_USER } from '../../graphql/queries/queries'
+import { Spinner } from '../../components'
+import { GET_USERS } from '../../graphql/queries/queries'
 import { GetUsers } from '../../graphql/queries/__generated__/GetUsers'
 
 function UserDetails(): JSX.Element {
-  const { loading, data } = useQuery<GetUsers>(GET_USER)
+  const { loading, data } = useQuery<GetUsers>(GET_USERS)
 
   if (loading) {
-    return (
-      <Center>
-        <Spinner marginTop="40vh" thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
-      </Center>
-    )
+    return <Spinner />
   }
+
   return (
     <div>
       <div>Hello {data?.users[0].userName}</div>

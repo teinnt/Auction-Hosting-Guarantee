@@ -1,10 +1,11 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
-import { Text, Center, Box, Button, Spinner } from '@chakra-ui/react'
+import { Text, Center, Box, Button, Grid } from '@chakra-ui/react'
 
+import { Spinner } from '../../components'
 import { GET_AUCTIONS } from '../../graphql/queries/queries'
-import { GetAuctions } from '../../graphql/queries/__generated__/GetAuctions'
+import { GetAuctions, GetAuctions_auctions } from '../../graphql/queries/__generated__/GetAuctions'
 
 function Lobby(): JSX.Element {
   const { loading, data } = useQuery<GetAuctions>(GET_AUCTIONS)
@@ -15,25 +16,23 @@ function Lobby(): JSX.Element {
     history.push(`/lobby/room/${id}`)
   }
 
+  const renderButtonRoom = (room: GetAuctions_auctions) => (
+    <Button onClick={() => goToRoom(`${room.id}`)} m={4} boxSize="56">
+      {room.name}
+    </Button>
+  )
+
   const renderRooms = () => (
     <>
       <Text fontSize="md">10:00 AM</Text>
-      <Box direction="column">
-        {data?.auctions?.map((room) => (
-          <Button onClick={() => goToRoom(`${room.id}`)} m={4} boxSize="56">
-            {room.name}
-          </Button>
-        ))}
-      </Box>
+      <Grid templateColumns="repeat(3, 1fr)" gap={10}>
+        {data?.auctions?.map((room) => renderButtonRoom(room))}
+      </Grid>
     </>
   )
 
   if (loading) {
-    return (
-      <Center>
-        <Spinner marginTop="40vh" thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
-      </Center>
-    )
+    return <Spinner />
   }
 
   return (

@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-test-linter:
-    name: Test
+    name: Build, Unit Test, and Linter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,6 +24,7 @@ jobs:
           cmd: run lint
 
   merge-code-to-the-master-branch:
+    name: Auto merge
     needs:
       - build-test-linter
     runs-on: ubuntu-latest

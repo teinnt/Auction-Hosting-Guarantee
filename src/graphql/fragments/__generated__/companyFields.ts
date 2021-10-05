@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface companyFields {
-  __typename: 'Company'
-  id: string
-  companyName: string
+  __typename: "Company";
+  id: string;
+  companyName: string;
 }

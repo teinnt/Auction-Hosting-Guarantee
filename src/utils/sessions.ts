@@ -45,4 +45,11 @@ const isAuthenticated = () => {
   return false
 }
 
-export { saveSession, isAuthenticated, retrieveToken, retrieveUserId, retrieveUsername, clearSession }
+export {
+  saveSession,
+  isAuthenticated,
+  retrieveToken,
+  retrieveUserId,
+  retrieveUsername,
+  clearSession,
+}

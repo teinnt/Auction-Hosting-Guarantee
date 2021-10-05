@@ -4,12 +4,16 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: userFields
+// GraphQL query operation: Self
 // ====================================================
 
-export interface userFields {
+export interface Self_self {
   __typename: "User";
   id: string | null;
   userName: string | null;
   phoneNumber: string | null;
+}
+
+export interface Self {
+  self: Self_self;
 }

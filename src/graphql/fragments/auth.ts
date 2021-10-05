@@ -4,6 +4,7 @@ const USER = gql`
   fragment userFields on User {
     id
     userName
+    phoneNumber
   }
 `
 
