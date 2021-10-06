@@ -8,8 +8,8 @@
 // ====================================================
 
 export interface userFields {
-  __typename: "User";
-  id: string | null;
-  userName: string | null;
-  phoneNumber: string | null;
+  __typename: 'User'
+  id: string | null
+  userName: string | null
+  phoneNumber: string | null
 }

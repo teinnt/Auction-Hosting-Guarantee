@@ -8,30 +8,30 @@
 // ====================================================
 
 export interface LoginCompany_loginCompany_data {
-  __typename: "JsonWebToken";
-  id: string | null;
-  token: string | null;
-  expires: any;
-  userName: string | null;
+  __typename: 'JsonWebToken'
+  id: string | null
+  token: string | null
+  expires: any
+  userName: string | null
 }
 
 export interface LoginCompany_loginCompany_error {
-  __typename: "ErrorModel";
-  message: string;
-  code: string;
+  __typename: 'ErrorModel'
+  message: string
+  code: string
 }
 
 export interface LoginCompany_loginCompany {
-  __typename: "ResponseOfJsonWebToken";
-  data: LoginCompany_loginCompany_data | null;
-  error: LoginCompany_loginCompany_error | null;
+  __typename: 'ResponseOfJsonWebToken'
+  data: LoginCompany_loginCompany_data | null
+  error: LoginCompany_loginCompany_error | null
 }
 
 export interface LoginCompany {
-  loginCompany: LoginCompany_loginCompany;
+  loginCompany: LoginCompany_loginCompany
 }
 
 export interface LoginCompanyVariables {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }

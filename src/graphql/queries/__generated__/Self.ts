@@ -8,12 +8,12 @@
 // ====================================================
 
 export interface Self_self {
-  __typename: "User";
-  id: string | null;
-  userName: string | null;
-  phoneNumber: string | null;
+  __typename: 'User'
+  id: string | null
+  userName: string | null
+  phoneNumber: string | null
 }
 
 export interface Self {
-  self: Self_self;
+  self: Self_self
 }

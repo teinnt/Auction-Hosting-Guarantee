@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Input,
-  InputGroup,
   FormControl as FormControlChakra,
   FormLabel,
   FormHelperText,
