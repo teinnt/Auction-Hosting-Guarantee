@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
@@ -16,7 +17,7 @@ import {
 
 import { FormControl, TermsAndConditions } from '../../components'
 
-const BecomeSeller = ({}) => {
+const BecomeSeller = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [agreed, setAgreed] = useState(false)

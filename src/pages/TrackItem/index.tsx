@@ -42,7 +42,6 @@ const TrackItem = () => {
       setError(true)
     } else {
       const item = await web3Item.getItemDetails(trackId, userAccount)
-      console.log(item)
       if (typeof item !== 'string') {
         setItemDetails(item)
       } else {
