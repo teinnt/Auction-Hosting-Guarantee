@@ -8,13 +8,16 @@ module.exports = {
       port: 7545,
       network_id: '*',
     },
-    // rinkeby: {
-    //   provider: () => {
-    //     return new HDWalletProvider(process.env.MNEMONIC, process.env.RINKEBY_RPC_URL)
-    //   },
-    //   network_id: '4',
-    //   skipDryRun: true,
-    // },
+    rinkeby: {
+      provider: () => {
+        return new HDWalletProvider(
+          process.env.REACT_APP_MNEMONIC,
+          process.env.REACT_APP_RINKEBY_URL
+        )
+      },
+      network_id: '4',
+      skipDryRun: true,
+    },
   },
   contracts_directory: './src/ethereum/contracts/',
   contracts_build_directory: './src/ethereum/abis/',

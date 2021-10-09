@@ -22,15 +22,6 @@ function Lobby(): JSX.Element {
     </Button>
   )
 
-  const renderRooms = () => (
-    <>
-      <Text fontSize="md">10:00 AM</Text>
-      <Grid templateColumns="repeat(3, 1fr)" gap={10}>
-        {data?.auctions?.map((room) => renderButtonRoom(room))}
-      </Grid>
-    </>
-  )
-
   if (loading) {
     return <Spinner />
   }
@@ -38,13 +29,16 @@ function Lobby(): JSX.Element {
   return (
     <Box>
       <Center>
-        <div>
+        <>
           <Text m="10" textAlign="center" fontSize="5xl">
             Auction rooms
           </Text>
 
-          {renderRooms()}
-        </div>
+          <Text fontSize="md">10:00 AM</Text>
+          <Grid templateColumns="repeat(3, 1fr)" gap={10}>
+            {data?.auctions?.map((room) => renderButtonRoom(room))}
+          </Grid>
+        </>
       </Center>
     </Box>
   )

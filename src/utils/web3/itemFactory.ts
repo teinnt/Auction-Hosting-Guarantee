@@ -14,24 +14,20 @@ const createNewItem = async (
   ownerWalletAddress: string,
   price: number
 ) => {
-  const url = await ipfs.addImage(image)
-
+  const ipfsHash = await ipfs.addImage(image)
   const account = await getAccount()
 
   const items = await itemFactory.methods
-    .createNewItem(url, name, location, description, price)
-    .send({ from: account })
-    .once('receipt', (receipt: any) => {
-      // eslint-disable-next-line no-console
-      console.log(receipt)
-    })
+    .createNewItem(ipfsHash, name, location, description, ownerWalletAddress, price)
+    .send({ from: account, gas: '2000000' })
 
-  return items
+  const { itemAddress } = items.events.AddNewItem.returnValues
+  return itemAddress
 }
 
-const getItem = async (index: number) => {
+const getItemFromFactory = async (index: number) => {
   const item = await itemFactory.methods.items(index).call()
   return item
 }
 
-export { createNewItem, getItem }
+export { createNewItem, getItemFromFactory }

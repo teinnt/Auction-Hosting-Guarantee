@@ -12,6 +12,7 @@ import {
   AuctionRoom,
   SellerRegister,
   ItemRegister,
+  TrackItem,
 } from '.'
 
 function App(): JSX.Element {
@@ -20,6 +21,7 @@ function App(): JSX.Element {
       <Route exact path="/" component={Home} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/track-item" component={TrackItem} />
       <Route exact path="/become-seller" component={SellerRegister} />
       <ProtectedRoute exact path="/lobby" component={Lobby} />
       <ProtectedRoute exact path="/me" component={UserDetails} />

@@ -6,19 +6,23 @@ import './ProtectedItem.sol';
 contract ItemFactory {
     address[] public items;
 
+    event AddNewItem(address itemAddress);
+
     function createNewItem(
-        string memory url,
+        string memory ipfsHash,
         string memory name,
         string memory location,
         string memory description,
-        // address ownerAddress,
+        string memory ownerAddress,
         uint256 price
     ) public {
         address newItem = address(
-            new ProtectedItem(url, name, location, description, msg.sender, price)
+            new ProtectedItem(ipfsHash, name, location, description, ownerAddress, price)
         );
 
         items.push(newItem);
+
+        emit AddNewItem(newItem);
     }
 
     function getAllItems() public view returns (address[] memory) {

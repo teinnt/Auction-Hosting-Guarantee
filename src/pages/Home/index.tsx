@@ -6,6 +6,7 @@ enum PageToGo {
   LOGIN = 'login',
   REGISTER = 'register',
   LOBBY = 'lobby',
+  TRACKING = 'track-item',
 }
 
 function Home(): JSX.Element {
@@ -28,6 +29,9 @@ function Home(): JSX.Element {
         </Button>
         <Button colorScheme="blue" onClick={() => goToPage(PageToGo.LOBBY)}>
           Lobby
+        </Button>
+        <Button colorScheme="blue" onClick={() => goToPage(PageToGo.TRACKING)}>
+          Track your item
         </Button>
       </Box>
     </div>

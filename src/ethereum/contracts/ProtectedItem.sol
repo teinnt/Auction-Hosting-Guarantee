@@ -11,13 +11,13 @@ contract ProtectedItem {
     }
 
     struct ItemOwner {
-        address owner;
+        string owner;
         uint256 price;
     }
 
     struct ItemDetails {
         ItemOwner[] purchasedHistory;
-        string url;
+        string ipfsHash;
         string name;
         string location;
         string description;
@@ -27,64 +27,84 @@ contract ProtectedItem {
     ItemDetails details;
 
     constructor(
-        string memory _url,
-        string memory _name,
-        string memory _location,
-        string memory _description,
-        address _currentOwner,
-        uint256 _price
+        string memory ipfsHash,
+        string memory name,
+        string memory location,
+        string memory description,
+        string memory ownerAddress,
+        uint256 price
     ) {
-        details.name = _name;
-        details.location = _location;
+        details.name = name;
+        details.location = location;
 
-        updateImageUrl(_url);
-        updateDescription(_description);
+        updateIpfsHash(ipfsHash);
+        updateDescription(description);
         updateStatus(Status.IDLE);
-        updatePurchaseHistory(_currentOwner, _price);
+        updatePurchasedHistory(ownerAddress, price);
     }
 
-    function getDetails() public view ownerOnly returns (ItemDetails memory) {
+    function getDetails(string memory ownerAddress)
+        public
+        view
+        ownerOnly(ownerAddress)
+        returns (ItemDetails memory)
+    {
         return details;
+    }
+
+    function getCurrentOwnerAddress() public view returns (string memory) {
+        string memory ownerAddress = details
+            .purchasedHistory[details.purchasedHistory.length - 1]
+            .owner;
+
+        return ownerAddress;
     }
 
     function updateStatus(Status _status) public {
         details.status = _status;
     }
 
-    function updateLocation(string memory _location) public validStatusOrOwnerOnly {
+    function updateLocationShipment(string memory _location) public shippingOnly {
         details.location = _location;
     }
 
-    function updatePurchaseHistory(address _currentOwner, uint256 _price) public {
-        details.purchasedHistory.push(ItemOwner(_currentOwner, _price));
+    function updateLocation(string memory _ownerAddress, string memory _location)
+        public
+        ownerOnly(_ownerAddress)
+    {
+        details.location = _location;
     }
 
-    function updateImageUrl(string memory _url) public {
-        details.url = _url;
+    function updatePurchasedHistory(string memory _ownerAddress, uint256 _price) public {
+        details.purchasedHistory.push(ItemOwner(_ownerAddress, _price));
+    }
+
+    function updatePriceToBid(string memory _ownerAddress, uint256 _price)
+        public
+        ownerOnly(_ownerAddress)
+    {
+        // details.purchasedHistory[details.purchasedHistory.length - 1].price = _price;
+        details.status = Status.READY_TO_BID;
+    }
+
+    function updateIpfsHash(string memory _ipfsHash) public {
+        details.ipfsHash = _ipfsHash;
     }
 
     function updateDescription(string memory _description) public {
         details.description = _description;
     }
 
-    modifier validStatusOrOwnerOnly() {
-        ItemOwner memory currentOwner = details.purchasedHistory[
-            details.purchasedHistory.length - 1
-        ];
-
-        require(
-            details.status == Status.SHIPPING || msg.sender == currentOwner.owner,
-            'Status is not SHIPPING or you are not the current owner!'
-        );
+    modifier shippingOnly() {
+        require(details.status == Status.SHIPPING);
         _;
     }
 
-    modifier ownerOnly() {
-        ItemOwner memory currentOwner = details.purchasedHistory[
-            details.purchasedHistory.length - 1
-        ];
-
-        require(msg.sender == currentOwner.owner, 'You are not the current owner!');
+    modifier ownerOnly(string memory _ownerAddress) {
+        require(
+            keccak256(bytes(_ownerAddress)) == keccak256(bytes(getCurrentOwnerAddress())),
+            'You are not the current owner!'
+        );
         _;
     }
 }

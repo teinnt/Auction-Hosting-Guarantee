@@ -23,7 +23,7 @@ const AwaitingAuction: React.FC<AwaitingAuctionProps> = ({ auction }) => {
     if (user?.phoneNumber) {
       history.push('/become-seller')
     } else {
-      history.push('register-item')
+      history.push(`${auction?.id}/register-item`)
     }
   }
 

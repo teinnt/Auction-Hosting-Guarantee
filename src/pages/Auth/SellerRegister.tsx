@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import {
   Box,
   Text,
@@ -12,13 +13,10 @@ import {
   Grid,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useHistory } from 'react-router-dom'
 
 import { FormControl, TermsAndConditions } from '../../components'
 
-interface BecomeSellerProps {}
-
-const BecomeSeller: React.FC<BecomeSellerProps> = ({}) => {
+const BecomeSeller = ({}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [agreed, setAgreed] = useState(false)
