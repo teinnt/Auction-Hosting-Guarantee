@@ -8,21 +8,21 @@
 // ====================================================
 
 export interface responseAuthFields_data {
-  __typename: "JsonWebToken";
-  id: string | null;
-  token: string | null;
-  expires: any;
-  userName: string | null;
+  __typename: 'JsonWebToken'
+  id: string | null
+  token: string | null
+  expires: any
+  userName: string | null
 }
 
 export interface responseAuthFields_error {
-  __typename: "ErrorModel";
-  message: string;
-  code: string;
+  __typename: 'ErrorModel'
+  message: string
+  code: string
 }
 
 export interface responseAuthFields {
-  __typename: "ResponseOfJsonWebToken";
-  data: responseAuthFields_data | null;
-  error: responseAuthFields_error | null;
+  __typename: 'ResponseOfJsonWebToken'
+  data: responseAuthFields_data | null
+  error: responseAuthFields_error | null
 }

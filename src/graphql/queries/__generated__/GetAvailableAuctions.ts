@@ -8,12 +8,12 @@
 // ====================================================
 
 export interface GetAvailableAuctions_availableAuctions {
-  __typename: "Auction";
-  id: string | null;
-  name: string | null;
-  endTime: any;
+  __typename: 'Auction'
+  id: string | null
+  name: string | null
+  endTime: any
 }
 
 export interface GetAvailableAuctions {
-  availableAuctions: GetAvailableAuctions_availableAuctions[][];
+  availableAuctions: GetAvailableAuctions_availableAuctions[][]
 }

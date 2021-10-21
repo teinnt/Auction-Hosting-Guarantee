@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Center, Alert, AlertIcon, Button, Text, Stack, Grid } from '@chakra-ui/react'
+import { Box, Center, Alert, AlertIcon, Button, Text, Grid } from '@chakra-ui/react'
 
 import { FormControl } from '../../components'
 import { routerUtils, web3Item } from '../../utils'

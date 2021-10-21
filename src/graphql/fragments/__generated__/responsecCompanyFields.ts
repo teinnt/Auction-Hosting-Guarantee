@@ -8,19 +8,19 @@
 // ====================================================
 
 export interface responsecCompanyFields_data {
-  __typename: "Company";
-  id: string;
-  companyName: string;
+  __typename: 'Company'
+  id: string
+  companyName: string
 }
 
 export interface responsecCompanyFields_error {
-  __typename: "ErrorModel";
-  message: string;
-  code: string;
+  __typename: 'ErrorModel'
+  message: string
+  code: string
 }
 
 export interface responsecCompanyFields {
-  __typename: "ResponseOfCompany";
-  data: responsecCompanyFields_data | null;
-  error: responsecCompanyFields_error | null;
+  __typename: 'ResponseOfCompany'
+  data: responsecCompanyFields_data | null
+  error: responsecCompanyFields_error | null
 }

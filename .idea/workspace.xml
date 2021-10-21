@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2df12845-fa46-448b-9e75-f0ffd41b527c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ethereum/abis/ItemFactory.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/ethereum/abis/ItemFactory.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ethereum/abis/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/ethereum/abis/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ethereum/abis/ProtectedItem.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/ethereum/abis/ProtectedItem.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/auctionFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/auctionFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/companyFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/companyFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/errorFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/errorFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/jwtFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/jwtFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/responseAuthFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/responseAuthFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/responseUserFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/responseUserFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/responsecCompanyFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/responsecCompanyFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/fragments/__generated__/userFields.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/fragments/__generated__/userFields.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations/__generated__/AddItemToAuction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations/__generated__/AddItemToAuction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations/__generated__/BecomeSeller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations/__generated__/BecomeSeller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations/__generated__/LoginCompany.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations/__generated__/LoginCompany.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations/__generated__/LoginUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations/__generated__/LoginUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations/__generated__/RegisterCompany.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations/__generated__/RegisterCompany.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations/__generated__/RegisterUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations/__generated__/RegisterUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations/__generated__/UpdateItemWinner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations/__generated__/UpdateItemWinner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetAuction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetAuction.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetAuctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetAuctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetAvailableAuctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetAvailableAuctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetMe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetMe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetUsers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries/__generated__/GetUsers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TrackItem/UpdateItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TrackItem/UpdateItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/graphQLClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/graphQLClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/web3/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/web3/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/truffle-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/truffle-config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1zp8qUFGx5jvSAhdBALIyreXU89" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2df12845-fa46-448b-9e75-f0ffd41b527c" name="Changes" comment="" />
+      <created>1634833866014</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1634833866014</updated>
+      <workItem from="1634833869956" duration="5000" />
+    </task>
+    <servers />
+  </component>
+</project>
