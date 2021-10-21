@@ -1,18 +1,45 @@
 import React from 'react'
-import { Input, InputGroup, FormControl as FormControlChakra } from '@chakra-ui/react'
+import {
+  Input,
+  FormControl as FormControlChakra,
+  FormLabel,
+  FormHelperText,
+} from '@chakra-ui/react'
 
 interface FormProps {
   value: string
   type: 'email' | 'text' | 'password'
   placeholder: string
   handleChange(arg: string): void
+  label?: string
+  helperText?: string
 }
 
-const FormControl: React.FC<FormProps> = ({ value, handleChange, placeholder, type }) => (
+const FormControl: React.FC<FormProps> = ({
+  value,
+  handleChange,
+  placeholder,
+  type,
+  label,
+  helperText,
+}) => (
   <FormControlChakra>
-    <InputGroup>
-      <Input type={type} placeholder={placeholder} onChange={(e) => handleChange(e.target.value)} value={value} />
-    </InputGroup>
+    {label ? <FormLabel>{label}</FormLabel> : null}
+
+    <Input
+      type={type}
+      placeholder={placeholder}
+      onChange={(e) => handleChange(e.target.value)}
+      value={`${value}`}
+    />
+
+    {helperText ? <FormHelperText>{helperText}</FormHelperText> : null}
   </FormControlChakra>
 )
+
+FormControl.defaultProps = {
+  label: '',
+  helperText: '',
+}
+
 export default FormControl

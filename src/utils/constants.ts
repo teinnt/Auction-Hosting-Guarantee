@@ -104,4 +104,6 @@ const companyRegister: InputField[] = [
   },
 ]
 
-export { login, userRegister, companyRegister }
+const auctionStartTime = ['10:00 AM', '3:00 PM', '7:00PM', '11:00 PM']
+
+export { login, userRegister, companyRegister, auctionStartTime }

@@ -22,7 +22,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }): JSX.Element 
     return result.data
   }
 
-  const registerUser = async (userName: string, email: string, password: string, cb: (obj: any) => any) => {
+  const registerUser = async (
+    userName: string,
+    email: string,
+    password: string,
+    cb: (obj: any) => any
+  ) => {
     const result = await cb({
       variables: {
         userName,

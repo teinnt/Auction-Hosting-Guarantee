@@ -8,40 +8,49 @@
 // ====================================================
 
 export interface GetAuction_auction_rounds_currentBid {
-  __typename: 'Bid'
-  bidderId: string | null
-  amount: number
+  __typename: "Bid";
+  bidderId: string | null;
+  amount: number;
 }
 
 export interface GetAuction_auction_rounds_item {
-  __typename: 'Item'
-  id: string | null
-  name: string | null
-  description: string | null
+  __typename: "Item";
+  id: string | null;
+  name: string | null;
+  trackId: string | null;
+  description: string | null;
+  highestPrice: number;
+}
+
+export interface GetAuction_auction_rounds_seller {
+  __typename: "User";
+  email: string | null;
 }
 
 export interface GetAuction_auction_rounds {
-  __typename: 'AuctionRound'
-  id: string | null
-  currentBid: GetAuction_auction_rounds_currentBid | null
-  item: GetAuction_auction_rounds_item | null
+  __typename: "AuctionRound";
+  id: string | null;
+  currentBid: GetAuction_auction_rounds_currentBid | null;
+  item: GetAuction_auction_rounds_item | null;
+  roundNumber: number;
+  seller: GetAuction_auction_rounds_seller | null;
 }
 
 export interface GetAuction_auction {
-  __typename: 'Auction'
-  id: string | null
-  name: string | null
-  startTime: any
-  endTime: any
-  isFinished: boolean
-  currentRound: number
-  rounds: (GetAuction_auction_rounds | null)[] | null
+  __typename: "Auction";
+  id: string | null;
+  name: string | null;
+  startTime: any;
+  endTime: any;
+  isFinished: boolean;
+  currentRound: number;
+  rounds: (GetAuction_auction_rounds | null)[] | null;
 }
 
 export interface GetAuction {
-  auction: GetAuction_auction
+  auction: GetAuction_auction;
 }
 
 export interface GetAuctionVariables {
-  auctionId: string
+  auctionId: string;
 }

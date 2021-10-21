@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface errorFields {
-  __typename: 'ErrorModel'
-  message: string
-  code: string
+  __typename: "ErrorModel";
+  message: string;
+  code: string;
 }

@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { sessions } from '.'
+
+import * as sessions from './sessions'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:63145/graphql',

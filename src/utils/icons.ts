@@ -1,4 +1,4 @@
 import item from '../assets/images/item.jpg'
+import item2 from '../assets/images/item-2.jpg'
 
-// eslint-disable-next-line import/prefer-default-export
-export { item }
+export { item, item2 }
