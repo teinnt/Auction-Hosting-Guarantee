@@ -1,6 +1,6 @@
 import { AbiItem } from 'web3-utils'
 
-import { getAccount, web3 } from '.'
+import { getAccount, web3 } from './index'
 import ProtectedItem from '../../ethereum/abis/ProtectedItem.json'
 
 const getItem = (itemAddress: string) => {

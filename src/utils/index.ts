@@ -11,4 +11,5 @@ export * as web3Item from './web3/protectedItem'
 export * as web3Factory from './web3/itemFactory'
 
 export { default as sendMail } from './email'
+// eslint-disable-next-line import/no-cycle
 export { default as client } from './graphQLClient'
