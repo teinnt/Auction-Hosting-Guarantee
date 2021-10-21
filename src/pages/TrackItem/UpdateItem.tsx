@@ -14,10 +14,12 @@ const UpdateItem = () => {
   const [location, setLocation] = useState('')
 
   const [isSuccess, setSuccess] = useState(false)
+  const [isLoading, setLoading] = useState(false)
   const [resultMessage, setResultMessage] = useState('')
 
   const updateItem = async () => {
     setSuccess(false)
+    setLoading(true)
     let message = await web3Item.updateLocation(trackId, shippingCode, location)
 
     if (!message) {
@@ -37,6 +39,7 @@ const UpdateItem = () => {
     } else {
       setResultMessage(message)
     }
+    setLoading(false)
   }
 
   return (
@@ -88,7 +91,14 @@ const UpdateItem = () => {
       ) : null}
 
       <Center>
-        <Button onClick={updateItem} mt="10" mb="20" variant="solid" colorScheme="blue">
+        <Button
+          isLoading={isLoading}
+          onClick={updateItem}
+          mt="10"
+          mb="20"
+          variant="solid"
+          colorScheme="blue"
+        >
           Okay
         </Button>
       </Center>
