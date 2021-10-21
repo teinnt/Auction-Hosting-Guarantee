@@ -8,21 +8,21 @@
 // ====================================================
 
 export interface userFields_address {
-  __typename: "Address";
-  houseNumber: string | null;
-  streetAddress: string | null;
-  city: string | null;
-  state: string | null;
-  country: string | null;
-  zipCode: string | null;
+  __typename: 'Address'
+  houseNumber: string | null
+  streetAddress: string | null
+  city: string | null
+  state: string | null
+  country: string | null
+  zipCode: string | null
 }
 
 export interface userFields {
-  __typename: "User";
-  id: string | null;
-  userName: string | null;
-  email: string | null;
-  phoneNumber: string | null;
-  walletAddress: string | null;
-  address: userFields_address | null;
+  __typename: 'User'
+  id: string | null
+  userName: string | null
+  email: string | null
+  phoneNumber: string | null
+  walletAddress: string | null
+  address: userFields_address | null
 }

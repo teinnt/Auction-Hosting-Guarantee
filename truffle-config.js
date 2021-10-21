@@ -1,4 +1,4 @@
-const HDWalletProvider = require('@truffle/hdwallet-provider')
+var HDWalletProvider = require('truffle-hdwallet-provider')
 require('dotenv').config()
 
 module.exports = {
@@ -16,6 +16,8 @@ module.exports = {
         )
       },
       network_id: '4',
+      gas: 4500000,
+      gasPrice: 10000000000,
       skipDryRun: true,
     },
   },

@@ -4,7 +4,7 @@ import { setContext } from '@apollo/client/link/context'
 import * as sessions from './sessions'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:63145/graphql',
+  uri: process.env.REACT_APP_API_URL || '',
 })
 
 const authLink = setContext((_, { headers }) => {

@@ -5,7 +5,7 @@ const sendEmail = async (to: string, message: string, link: string) => {
   await emailjs.send(
     process.env.REACT_APP_EMAIL_SERVICE_ID || '',
     process.env.REACT_APP_EMAIL_TEMPLATE_ID || '',
-    { to: 'taylortran.it@gmail.com', message, link: `${url}/update-item/${link}` },
+    { to, message, link: `${url}/update-item/${link}` },
     process.env.REACT_APP_EMAIL_USER_ID || ''
   )
 }

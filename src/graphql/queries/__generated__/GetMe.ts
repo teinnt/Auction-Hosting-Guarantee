@@ -8,25 +8,25 @@
 // ====================================================
 
 export interface GetMe_self_address {
-  __typename: "Address";
-  houseNumber: string | null;
-  streetAddress: string | null;
-  city: string | null;
-  state: string | null;
-  country: string | null;
-  zipCode: string | null;
+  __typename: 'Address'
+  houseNumber: string | null
+  streetAddress: string | null
+  city: string | null
+  state: string | null
+  country: string | null
+  zipCode: string | null
 }
 
 export interface GetMe_self {
-  __typename: "User";
-  id: string | null;
-  userName: string | null;
-  email: string | null;
-  phoneNumber: string | null;
-  walletAddress: string | null;
-  address: GetMe_self_address | null;
+  __typename: 'User'
+  id: string | null
+  userName: string | null
+  email: string | null
+  phoneNumber: string | null
+  walletAddress: string | null
+  address: GetMe_self_address | null
 }
 
 export interface GetMe {
-  self: GetMe_self;
+  self: GetMe_self
 }

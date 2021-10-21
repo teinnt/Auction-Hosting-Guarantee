@@ -8,22 +8,22 @@
 // ====================================================
 
 export interface AddItemToAuction_addItemToAuction {
-  __typename: "Auction";
-  id: string | null;
-  name: string | null;
+  __typename: 'Auction'
+  id: string | null
+  name: string | null
 }
 
 export interface AddItemToAuction {
-  addItemToAuction: AddItemToAuction_addItemToAuction;
+  addItemToAuction: AddItemToAuction_addItemToAuction
 }
 
 export interface AddItemToAuctionVariables {
-  name: string;
-  price: number;
-  auctionID: string;
-  description: string;
-  imageURL: string;
-  location: string;
-  ownerWalletAddress: string;
-  trackID: string;
+  name: string
+  price: number
+  auctionID: string
+  description: string
+  imageURL: string
+  location: string
+  ownerWalletAddress: string
+  trackID: string
 }
