@@ -45,7 +45,7 @@ const useMetaMask = () => {
     loadUserAccount()
   }, [])
 
-  return { userAccount }
+  return { userAccount, loadMetaMask }
 }
 
 export default useMetaMask

@@ -1,14 +1,18 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
-import { Text, Center, Box, Button, Grid } from '@chakra-ui/react'
+import { Text, Box, Button, Grid } from '@chakra-ui/react'
 
 import { Spinner } from '../../components'
-import { GET_AUCTIONS } from '../../graphql/queries/queries'
-import { GetAuctions, GetAuctions_auctions } from '../../graphql/queries/__generated__/GetAuctions'
+import { GET_AVAILABLE_AUCTIONS } from '../../graphql/queries/queries'
+import {
+  GetAvailableAuctions,
+  GetAvailableAuctions_availableAuctions,
+} from '../../graphql/queries/__generated__/GetAvailableAuctions'
+import { auctionStartTime } from '../../utils/constants'
 
 function Lobby(): JSX.Element {
-  const { loading, data } = useQuery<GetAuctions>(GET_AUCTIONS)
+  const { loading, data } = useQuery<GetAvailableAuctions>(GET_AVAILABLE_AUCTIONS)
 
   const history = useHistory()
 
@@ -16,10 +20,19 @@ function Lobby(): JSX.Element {
     history.push(`/lobby/room/${id}`)
   }
 
-  const renderButtonRoom = (room: GetAuctions_auctions) => (
-    <Button onClick={() => goToRoom(`${room.id}`)} m={4} boxSize="56">
-      {room.name}
-    </Button>
+  const renderRooms = (rooms: GetAvailableAuctions_availableAuctions[], index: number) => (
+    <>
+      <Text key={auctionStartTime[index]} fontWeight="bold" ml="24" fontSize="md">
+        {auctionStartTime[index]}
+      </Text>
+      <Grid paddingInline="20" templateColumns="repeat(3, 1fr)" gap={10}>
+        {rooms.map((room) => (
+          <Button onClick={() => goToRoom(`${room.id}`)} m={4} boxSize="56">
+            {room.name}
+          </Button>
+        ))}
+      </Grid>
+    </>
   )
 
   if (loading) {
@@ -28,18 +41,18 @@ function Lobby(): JSX.Element {
 
   return (
     <Box>
-      <Center>
-        <>
-          <Text m="10" textAlign="center" fontSize="5xl">
-            Auction rooms
-          </Text>
+      <Text m="10" textAlign="center" fontSize="5xl">
+        Auction rooms
+      </Text>
 
-          <Text fontSize="md">10:00 AM</Text>
-          <Grid templateColumns="repeat(3, 1fr)" gap={10}>
-            {data?.auctions?.map((room) => renderButtonRoom(room))}
-          </Grid>
-        </>
-      </Center>
+      {data?.availableAuctions &&
+        data.availableAuctions.map((rooms, index) => {
+          if (rooms.length === 0) {
+            return null
+          }
+
+          return renderRooms(rooms, index)
+        })}
     </Box>
   )
 }

@@ -6,5 +6,16 @@ function isNumeric(numberToCheck: string): boolean {
   return false
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export { isNumeric }
+const randomNumber = (length: number): string => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
+
+  let result = ''
+  for (let i = 0; i < length; i += 1) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+
+  return result
+}
+
+export { isNumeric, randomNumber }

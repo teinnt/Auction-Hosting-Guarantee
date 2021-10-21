@@ -25,6 +25,8 @@ contract ProtectedItem {
     }
 
     ItemDetails details;
+    string shippingCode;
+    string confirmationCode;
 
     constructor(
         string memory ipfsHash,
@@ -36,10 +38,10 @@ contract ProtectedItem {
     ) {
         details.name = name;
         details.location = location;
+        details.ipfsHash = ipfsHash;
+        details.description = description;
+        details.status = Status.READY_TO_BID;
 
-        updateIpfsHash(ipfsHash);
-        updateDescription(description);
-        updateStatus(Status.IDLE);
         updatePurchasedHistory(ownerAddress, price);
     }
 
@@ -60,43 +62,62 @@ contract ProtectedItem {
         return ownerAddress;
     }
 
-    function updateStatus(Status _status) public {
-        details.status = _status;
-    }
-
-    function updateLocationShipment(string memory _location) public shippingOnly {
+    function updateItemToBid(
+        string memory _ownerAddress,
+        uint256 _price,
+        string memory _location
+    ) public ownerOnly(_ownerAddress) {
+        details.purchasedHistory[details.purchasedHistory.length - 1].price = _price;
+        details.status = Status.READY_TO_BID;
         details.location = _location;
     }
 
-    function updateLocation(string memory _ownerAddress, string memory _location)
-        public
-        ownerOnly(_ownerAddress)
-    {
-        details.location = _location;
+    function updateItemAfterBid(
+        string memory _ownerAddress,
+        uint256 _price,
+        string memory _shippingCode,
+        string memory _confirmationCode
+    ) public {
+        updatePurchasedHistory(_ownerAddress, _price);
+        shippingCode = _shippingCode;
+        confirmationCode = _confirmationCode;
+        details.status = Status.SHIPPING;
     }
 
     function updatePurchasedHistory(string memory _ownerAddress, uint256 _price) public {
         details.purchasedHistory.push(ItemOwner(_ownerAddress, _price));
     }
 
-    function updatePriceToBid(string memory _ownerAddress, uint256 _price)
+    function updateLocation(string memory _shippingCode, string memory _location)
         public
-        ownerOnly(_ownerAddress)
+        shippingOnly(_shippingCode)
     {
-        // details.purchasedHistory[details.purchasedHistory.length - 1].price = _price;
-        details.status = Status.READY_TO_BID;
+        details.location = _location;
     }
 
-    function updateIpfsHash(string memory _ipfsHash) public {
-        details.ipfsHash = _ipfsHash;
+    function receiveItem(string memory _confirmationCode)
+        public
+        validConfirmationCode(_confirmationCode)
+    {
+        details.status = Status.RECEIVED;
+        confirmationCode = '';
+        shippingCode = '';
     }
 
-    function updateDescription(string memory _description) public {
-        details.description = _description;
+    modifier shippingOnly(string memory _shippingCode) {
+        require(details.status == Status.SHIPPING, 'The item is not shipped!');
+        require(
+            keccak256(bytes(shippingCode)) == keccak256(bytes(_shippingCode)),
+            'The shipping code is invalid!'
+        );
+        _;
     }
 
-    modifier shippingOnly() {
-        require(details.status == Status.SHIPPING);
+    modifier validConfirmationCode(string memory _confirmationCode) {
+        require(
+            keccak256(bytes(confirmationCode)) == keccak256(bytes(_confirmationCode)),
+            'The confirmation code is invalid!'
+        );
         _;
     }
 

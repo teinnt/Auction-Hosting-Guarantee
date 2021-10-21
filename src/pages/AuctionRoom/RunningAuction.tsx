@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import {
   Text,
   Box,
@@ -24,7 +25,10 @@ interface RunningAuctionProps {
 
 function RunningAuction({ round, hubConnection, auctionId }: RunningAuctionProps): JSX.Element {
   const [bidAmount, setBidAmount] = useState('')
+  const [isEnd, setEnd] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+
+  const history = useHistory()
 
   const isBidValid = () =>
     bidAmount &&
@@ -40,6 +44,15 @@ function RunningAuction({ round, hubConnection, auctionId }: RunningAuctionProps
     }
   }
 
+  const goToDetailPage = () => {
+    history.push({ pathname: `/confirm-details`, state: { auctionId, round } })
+  }
+
+  const handleEndAuction = () => {
+    // using SignalR to announce winner and close auction
+    setEnd(true)
+  }
+
   const displayCurrentBid = () => {
     const yourBid = round?.currentBid?.bidderId === sessions.retrieveUsername() ? '(your bid)' : ''
 
@@ -52,6 +65,9 @@ function RunningAuction({ round, hubConnection, auctionId }: RunningAuctionProps
 
   return (
     <Box>
+      <Button position="absolute" right="0" onClick={handleEndAuction}>
+        End auction
+      </Button>
       <Box>
         <Text m="10" textAlign="center" fontSize="4xl">
           {round?.item?.name}
@@ -87,9 +103,15 @@ function RunningAuction({ round, hubConnection, auctionId }: RunningAuctionProps
                 </Alert>
               ) : null}
 
-              <Button w="100%" onClick={handleBid}>
-                BID
-              </Button>
+              {isEnd ? (
+                <Button w="100%" onClick={goToDetailPage}>
+                  Congratulations - you won! Click here to continue
+                </Button>
+              ) : (
+                <Button w="100%" onClick={handleBid}>
+                  BID
+                </Button>
+              )}
             </Grid>
           </GridItem>
 

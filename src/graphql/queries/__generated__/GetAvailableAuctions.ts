@@ -4,17 +4,16 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetAuctions
+// GraphQL query operation: GetAvailableAuctions
 // ====================================================
 
-export interface GetAuctions_auctions {
+export interface GetAvailableAuctions_availableAuctions {
   __typename: "Auction";
   id: string | null;
   name: string | null;
   endTime: any;
-  startTime: any;
 }
 
-export interface GetAuctions {
-  auctions: GetAuctions_auctions[];
+export interface GetAvailableAuctions {
+  availableAuctions: GetAvailableAuctions_availableAuctions[][];
 }

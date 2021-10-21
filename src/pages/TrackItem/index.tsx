@@ -31,7 +31,7 @@ interface ItemDetails {
 const TrackItem = () => {
   const { userAccount } = useMetaMask()
 
-  const [trackId, setTrackId] = useState('0xfC79f3868E97Dd71793E98a051634A227e69e105')
+  const [trackId, setTrackId] = useState('')
   const [itemDetails, setItemDetails] = useState<ItemDetails>()
 
   const [error, setError] = useState(false)
@@ -44,6 +44,7 @@ const TrackItem = () => {
       const item = await web3Item.getItemDetails(trackId, userAccount)
       if (typeof item !== 'string') {
         setItemDetails(item)
+        setErrorMessage('')
       } else {
         setErrorMessage(item)
       }
@@ -64,7 +65,7 @@ const TrackItem = () => {
         {errorMessage && (
           <Alert status="error">
             <AlertIcon />
-            Please make sure your track ID is correct or your account is item&apos;s owner account.
+            Please make sure your track ID is correct and your account is item&apos;s owner account.
           </Alert>
         )}
       </Center>
@@ -85,7 +86,7 @@ const TrackItem = () => {
             <Grid m="10" templateColumns="repeat(2, 1fr)" gap={10}>
               <GridItem borderRadius="20" colSpan={2}>
                 <Center>
-                  <Image maxHeight="60vh" src={icons.item} alt="Item" />
+                  <Image maxHeight="60vh" src={icons.item2} alt="Item" />
                 </Center>
               </GridItem>
 

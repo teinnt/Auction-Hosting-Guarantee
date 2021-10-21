@@ -13,6 +13,7 @@ import {
   SellerRegister,
   ItemRegister,
   TrackItem,
+  UpdateItem,
 } from '.'
 
 function App(): JSX.Element {
@@ -22,11 +23,12 @@ function App(): JSX.Element {
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/track-item" component={TrackItem} />
-      <Route exact path="/become-seller" component={SellerRegister} />
       <ProtectedRoute exact path="/lobby" component={Lobby} />
-      <ProtectedRoute exact path="/me" component={UserDetails} />
+      <Route exact path="/update-item/:id" component={UpdateItem} />
+      <Route exact path="/become-seller" component={SellerRegister} />
       <ProtectedRoute exact path="/lobby/room/:id" component={AuctionRoom} />
-      <Route exact path="/lobby/room/:id/register-item" component={ItemRegister} />
+      <ProtectedRoute exact path="/confirm-details" component={UserDetails} />
+      <Route exact path="/lobby/room/register-item/:id" component={ItemRegister} />
       <Route component={NotFound} />
     </Switch>
   )

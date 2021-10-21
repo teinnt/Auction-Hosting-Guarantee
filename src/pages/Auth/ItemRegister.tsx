@@ -12,28 +12,33 @@ import {
   Grid,
   Image,
 } from '@chakra-ui/react'
+import { useMutation } from '@apollo/client'
 
-import { web3Factory, web3Item } from '../../utils'
+import { client, routerUtils, web3Factory, web3Item } from '../../utils'
 import { CaptureImage, FormControl } from '../../components'
+import { ADD_ITEM } from '../../graphql/mutations/auction'
 
-const BecomeSeller = (): JSX.Element => {
+const ItemRegister = (): JSX.Element => {
   const [name, setName] = useState('Item name')
   const [price, setPrice] = useState('1')
   const [description, setDescription] = useState('Description')
   const [location, setLocation] = useState('Location')
-  const [trackId, setTrackId] = useState('0xfC79f3868E97Dd71793E98a051634A227e69e105')
-  const [ownerWalletAddress, setOwnerWalletAddress] = useState(
-    '0xd060c4e39aE54a4225713D030E01eE659e442295'
-  )
+  const [trackId, setTrackId] = useState('')
+  const [ownerWalletAddress, setOwnerWalletAddress] = useState('')
 
   const [isNew, setNew] = useState(false)
   const [isUnique, setUnique] = useState(false)
   const [isTracked, setTracked] = useState(true)
   const [itemImage, setItemImage] = useState<File>()
+  const [imageURL] = useState('')
 
   const [isLoading, setLoading] = useState(false)
   const [isSuccess, setSuccess] = useState(false)
   const [resultMessage, setResultMessage] = useState('')
+
+  const auctionID = routerUtils.getIdFromUrl()
+
+  const [addItemToAuction] = useMutation(ADD_ITEM)
 
   const history = useHistory()
 
@@ -77,9 +82,28 @@ const BecomeSeller = (): JSX.Element => {
     return true
   }
 
+  const addItemToAuctionApi = async (trackID: string) => {
+    const result = await addItemToAuction({
+      variables: {
+        name,
+        price: Number(price),
+        auctionID,
+        description,
+        imageURL,
+        location,
+        ownerWalletAddress,
+        trackID,
+      },
+    })
+
+    return result.data
+  }
+
   const handleSubmit = async () => {
     if (isSuccess) {
+      await client.reFetchObservableQueries()
       history.goBack()
+      return
     }
 
     if (!allInputsValid()) {
@@ -89,7 +113,7 @@ const BecomeSeller = (): JSX.Element => {
     setLoading(true)
 
     if (isTracked) {
-      const message = await web3Item.updateItemDetails(
+      const message = await web3Item.updateItemToBid(
         trackId,
         ownerWalletAddress,
         location,
@@ -97,10 +121,10 @@ const BecomeSeller = (): JSX.Element => {
       )
 
       if (!message) {
-        setSuccess(true)
-
-        // add item to auction
-        setResultMessage('Item has been updated and added to the auction successfully.')
+        if (await addItemToAuctionApi(trackId)) {
+          setSuccess(true)
+          setResultMessage('Item has been updated and added to the auction!')
+        }
       } else {
         setResultMessage('Please make sure the owner id is correct.')
       }
@@ -115,12 +139,12 @@ const BecomeSeller = (): JSX.Element => {
       )
 
       if (itemAddress) {
-        setSuccess(true)
-
-        // add item to auction
-        setResultMessage(
-          `Item has been registered and added to the auction successfully. Item track ID: ${itemAddress}`
-        )
+        if (await addItemToAuctionApi(itemAddress)) {
+          setSuccess(true)
+          setResultMessage(
+            `Item has been registered and added to the auction successfully. Item track ID: ${itemAddress}`
+          )
+        }
       } else {
         setResultMessage('Cannot add this new item.')
       }
@@ -245,4 +269,4 @@ const BecomeSeller = (): JSX.Element => {
   )
 }
 
-export default BecomeSeller
+export default ItemRegister

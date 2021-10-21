@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: responseUserFields
+// GraphQL query operation: GetMe
 // ====================================================
 
-export interface responseUserFields_data_address {
+export interface GetMe_self_address {
   __typename: "Address";
   houseNumber: string | null;
   streetAddress: string | null;
@@ -17,24 +17,16 @@ export interface responseUserFields_data_address {
   zipCode: string | null;
 }
 
-export interface responseUserFields_data {
+export interface GetMe_self {
   __typename: "User";
   id: string | null;
   userName: string | null;
   email: string | null;
   phoneNumber: string | null;
   walletAddress: string | null;
-  address: responseUserFields_data_address | null;
+  address: GetMe_self_address | null;
 }
 
-export interface responseUserFields_error {
-  __typename: "ErrorModel";
-  message: string;
-  code: string;
-}
-
-export interface responseUserFields {
-  __typename: "ResponseOfUser";
-  data: responseUserFields_data | null;
-  error: responseUserFields_error | null;
+export interface GetMe {
+  self: GetMe_self;
 }

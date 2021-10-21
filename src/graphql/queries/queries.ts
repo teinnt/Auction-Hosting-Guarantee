@@ -11,18 +11,8 @@ const GET_USERS = gql`
   ${USER}
 `
 
-const GET_AUCTIONS = gql`
-  query GetAuctions {
-    auctions {
-      id
-      name
-      endTime
-    }
-  }
-`
-
 const GET_ME = gql`
-  query getMe {
+  query GetMe {
     self {
       ...userFields
     }
@@ -39,4 +29,25 @@ const GET_AUCTION = gql`
   ${AUCTION}
 `
 
-export { GET_USERS, GET_ME, GET_AUCTIONS, GET_AUCTION }
+const GET_AUCTIONS = gql`
+  query GetAuctions {
+    auctions {
+      id
+      name
+      endTime
+      startTime
+    }
+  }
+`
+
+const GET_AVAILABLE_AUCTIONS = gql`
+  query GetAvailableAuctions {
+    availableAuctions {
+      id
+      name
+      endTime
+    }
+  }
+`
+
+export { GET_USERS, GET_ME, GET_AUCTIONS, GET_AUCTION, GET_AVAILABLE_AUCTIONS }

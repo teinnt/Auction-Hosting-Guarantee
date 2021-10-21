@@ -19,6 +19,44 @@ const REGISTER_USER = gql`
   ${AUTH_RESPONSE}
 `
 
+const BECOME_SELLER = gql`
+  mutation BecomeSeller(
+    $city: String!
+    $phoneNumber: String!
+    $walletAddress: String!
+    $houseNumber: String!
+    $street: String!
+    $state: String!
+    $country: String!
+    $zipCode: String!
+    $imageURL: String!
+  ) {
+    becomeSeller(
+      input: {
+        city: $city
+        country: $country
+        houseNumber: $houseNumber
+        imageURL: $imageURL
+        phoneNumber: $phoneNumber
+        state: $state
+        street: $street
+        walletAddress: $walletAddress
+        zipCode: $zipCode
+      }
+    ) {
+      email
+      phoneNumber
+      walletAddress
+      address {
+        houseNumber
+        streetAddress
+        city
+        country
+      }
+    }
+  }
+`
+
 const LOGIN_COMAPANY = gql`
   mutation LoginCompany($email: String!, $password: String!) {
     loginCompany(input: { email: $email, password: $password }) {
@@ -75,4 +113,4 @@ const REGISTER_COMPANY = gql`
   ${AUTH_RESPONSE}
 `
 
-export { REGISTER_USER, REGISTER_COMPANY, LOGIN_USER, LOGIN_COMAPANY }
+export { REGISTER_USER, REGISTER_COMPANY, LOGIN_USER, LOGIN_COMAPANY, BECOME_SELLER }

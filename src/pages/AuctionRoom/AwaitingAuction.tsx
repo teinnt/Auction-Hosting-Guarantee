@@ -1,29 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import { Box, Text, Button, Center, Image, Grid } from '@chakra-ui/react'
 
 import { GetAuction_auction } from '../../graphql/queries/__generated__/GetAuction'
 import { GET_ME } from '../../graphql/queries/queries'
-import { Self } from '../../graphql/queries/__generated__/Self'
 import { Spinner } from '../../components'
-import { icons } from '../../utils'
+import { client, icons } from '../../utils'
+import { GetMe } from '../../graphql/queries/__generated__/GetMe'
 
 interface AwaitingAuctionProps {
   auction: GetAuction_auction | undefined
 }
 
 const AwaitingAuction: React.FC<AwaitingAuctionProps> = ({ auction }) => {
-  const { loading, data } = useQuery<Self>(GET_ME)
+  const { loading, data } = useQuery<GetMe>(GET_ME)
   const user = data?.self
 
   const history = useHistory()
 
+  useEffect(() => {
+    const updateAuctionItem = async () => {
+      await client.reFetchObservableQueries()
+    }
+
+    updateAuctionItem()
+  }, [data])
+
   const goToPage = () => {
-    if (user?.phoneNumber) {
+    if (!user?.phoneNumber) {
       history.push('/become-seller')
     } else {
-      history.push(`${auction?.id}/register-item`)
+      history.push(`register-item/${auction?.id}`)
     }
   }
 
@@ -50,11 +58,13 @@ const AwaitingAuction: React.FC<AwaitingAuctionProps> = ({ auction }) => {
 
   return (
     <Box>
-      <Text fontSize="4xl">{auction?.name}</Text>
+      <Text mt="10" textAlign="center" fontSize="4xl">
+        {auction?.name}
+      </Text>
 
       <Center mt="10">
         <Button mb="10" onClick={goToPage}>
-          {user?.phoneNumber ? 'Become a seller' : 'Add your item in this auction'}
+          {user?.phoneNumber ? 'Add your item in this auction' : 'Become a seller'}
         </Button>
       </Center>
 

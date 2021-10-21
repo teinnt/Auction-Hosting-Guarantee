@@ -4,7 +4,17 @@ const USER = gql`
   fragment userFields on User {
     id
     userName
+    email
     phoneNumber
+    walletAddress
+    address {
+      houseNumber
+      streetAddress
+      city
+      state
+      country
+      zipCode
+    }
   }
 `
 

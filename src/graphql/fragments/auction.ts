@@ -17,7 +17,13 @@ const AUCTION = gql`
       item {
         id
         name
+        trackId
         description
+        highestPrice
+      }
+      roundNumber
+      seller {
+        email
       }
     }
   }

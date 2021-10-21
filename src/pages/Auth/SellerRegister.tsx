@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, FormEvent } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
   Box,
@@ -12,36 +11,68 @@ import {
   Checkbox,
   Flex,
   Grid,
-  useDisclosure,
+  Image,
 } from '@chakra-ui/react'
+import { useMutation } from '@apollo/client'
 
-import { FormControl, TermsAndConditions } from '../../components'
+import { BECOME_SELLER } from '../../graphql/mutations/auth'
+import { CaptureImage, FormControl, TermsAndConditionsSeller } from '../../components'
 
 const BecomeSeller = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
   const [agreed, setAgreed] = useState(false)
-  const [phone, setPhone] = useState('')
-  const [houseNumber, setHouseNumber] = useState('')
-  const [street, setStreet] = useState('')
-  const [city, setCity] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('0987654321')
+  const [houseNumber, setHouseNumber] = useState('55')
+  const [street, setStreet] = useState('Wellesley Street East')
+  const [city, setCity] = useState('Auckland')
   const [state, setState] = useState('')
-  const [country, setContry] = useState('')
-  const [zipCode, setZipCode] = useState('')
-  const [identityImg, setIdentifyImg] = React.useState<File>()
+  const [country, setCountry] = useState('New Zealand')
+  const [zipCode, setZipCode] = useState('1010')
+  const [imageURL, setImageURL] = useState('URL')
+  const [imageFile, setImageFile] = useState<File>()
 
-  const [bankAccount, setBankAccount] = useState('')
-  const [bankName, setBankName] = useState('')
-  const [bankAddress, setBankAddress] = useState('')
-  const [bankCountry, setBankCountry] = useState('')
-  const [currency, setCurrency] = useState('')
+  const [bankAccount, setBankAccount] = useState('123456')
+  const [bankName, setBankName] = useState('Taylor')
+  const [bankAddress, setBankAddress] = useState('Wellesley Street East')
+  const [bankCountry, setBankCountry] = useState('New Zealand')
+  const [currency, setCurrency] = useState('NZD')
+  const [walletAddress, setWalletAddress] = useState('0x6d398A10eCAE3053d6Cd332c2c1FDE070FaA4ABC')
 
   const [errorMessage, setErrorMessage] = useState('')
 
+  const [becomeSeller] = useMutation(BECOME_SELLER)
+
   const history = useHistory()
 
-  const handleUpdateSeller = () => {
-    history.goBack()
+  const handleUpdateSeller = async () => {
+    if (agreed && walletAddress && phoneNumber && houseNumber && street && country) {
+      const result = await becomeSeller({
+        variables: {
+          city,
+          country,
+          houseNumber,
+          imageURL,
+          phoneNumber,
+          state,
+          street,
+          walletAddress,
+          zipCode,
+        },
+      })
+
+      if (result.data) {
+        history.goBack()
+      } else {
+        setErrorMessage('Something went wrong, please contact IT Department for details')
+      }
+    } else {
+      setErrorMessage('Please make sure you enter all required information.')
+    }
+  }
+
+  const handleCaptureImage = (event: FormEvent<HTMLInputElement>) => {
+    if (event.currentTarget.files) {
+      setImageFile(event.currentTarget.files[0])
+    }
   }
 
   return (
@@ -52,8 +83,10 @@ const BecomeSeller = () => {
 
       <Text fontWeight="bold">Terms and Conditions</Text>
       <Flex p="1rem" direction="column" mt="6" mb="10">
-        <TermsAndConditions />
-        <Checkbox colorScheme="blue">Agree on Terms and Conditions</Checkbox>
+        <TermsAndConditionsSeller />
+        <Checkbox isChecked={agreed} onChange={() => setAgreed(!agreed)} colorScheme="blue">
+          Agree on Terms and Conditions
+        </Checkbox>
       </Flex>
 
       <Text mt="10" mb="4" fontWeight="bold">
@@ -95,16 +128,22 @@ const BecomeSeller = () => {
           placeholder="Bank address"
           type="text"
         />
+        <FormControl
+          value={walletAddress}
+          handleChange={setWalletAddress}
+          placeholder="Ethereum wallet address"
+          type="text"
+        />
       </Stack>
 
       <Text mb="4" fontWeight="bold">
         Contact Details
       </Text>
 
-      <Stack spacing={4} p="1rem" backgroundColor="whiteAlpha.900">
+      <Stack mb="8" spacing={4} p="1rem" backgroundColor="whiteAlpha.900">
         <FormControl
-          value={phone}
-          handleChange={setPhone}
+          value={phoneNumber}
+          handleChange={setPhoneNumber}
           placeholder="Your phone number"
           type="text"
         />
@@ -124,7 +163,12 @@ const BecomeSeller = () => {
           />
           <FormControl value={city} handleChange={setCity} placeholder="City" type="text" />
           <FormControl value={state} handleChange={setState} placeholder="State" type="text" />
-          <FormControl value={country} handleChange={setContry} placeholder="Country" type="text" />
+          <FormControl
+            value={country}
+            handleChange={setCountry}
+            placeholder="Country"
+            type="text"
+          />
           <FormControl
             value={zipCode}
             handleChange={setZipCode}
@@ -132,16 +176,15 @@ const BecomeSeller = () => {
             type="text"
           />
         </Grid>
-
-        <Flex alignItems="center">
-          <Button borderRadius="5" type="button" variant="solid" colorScheme="gray" w="fit-content">
-            Upload your legal identity photo
-          </Button>
-          <Box ml="6" color="green.400" borderRadius="full">
-            OK
-          </Box>
-        </Flex>
       </Stack>
+
+      {imageFile ? (
+        <Image m="auto" mb="8" alt="Uploaded image" src={URL.createObjectURL(imageFile)} />
+      ) : null}
+
+      <Flex alignItems="center">
+        <CaptureImage label="Upload image photo" handleCapture={handleCaptureImage} />
+      </Flex>
 
       {errorMessage ? (
         <Alert status="error">
