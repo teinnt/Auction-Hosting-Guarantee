@@ -27,7 +27,7 @@ const BecomeSeller = () => {
   const [state, setState] = useState('')
   const [country, setCountry] = useState('New Zealand')
   const [zipCode, setZipCode] = useState('1010')
-  const [imageURL, setImageURL] = useState('URL')
+  const [imageURL] = useState('URL')
   const [imageFile, setImageFile] = useState<File>()
 
   const [bankAccount, setBankAccount] = useState('123456')
