@@ -16,6 +16,8 @@ If you want to test using the deloyed link, please update origin in Startup.cs f
 
 **builder.WithOrigins("https://steep-disk-0361.on.fleek.co")**
 
+&nbsp;
+
 If you want to test using the localhost, please update origin in Startup.cs file to
 
 **builder.WithOrigins("http://localhost:3000")**
@@ -34,6 +36,4 @@ If you want to see auction rooms, please add new auction from the server like so
 &nbsp;
 
 
-##
-
-**Thank you very much!**
+## Thank you very much!
