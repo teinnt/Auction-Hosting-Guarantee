@@ -6,7 +6,9 @@ Currently, the live server does not work, please download and run the server loc
 
 https://github.com/teinnt/Auction-Api
 
-\
+
+&nbsp;
+
 
 ## Update origin
 
@@ -18,7 +20,9 @@ If you want to test using the localhost, please update origin in Startup.cs file
 
 **builder.WithOrigins("http://localhost:3000")**
 
-\
+
+&nbsp;
+
 
 ## Add auction room
 
@@ -26,7 +30,9 @@ If you want to see auction rooms, please add new auction from the server like so
 
 ![alt text](https://github.com/teinnt/Auction-Hosting-Guarantee/blob/master/src/assets/images/readme.jpg)
 
-\
+
+&nbsp;
+
 
 ##
 
