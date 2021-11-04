@@ -111,7 +111,7 @@ contract ProtectedItem {
             'The shipping code is invalid!'
         );
         _;
-    }   
+    }
 
     modifier validConfirmationCode(string memory _confirmationCode) {
         require(
