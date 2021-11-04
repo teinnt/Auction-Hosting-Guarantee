@@ -8,4 +8,4 @@ https://github.com/teinnt/Auction-Api
 
 If you want to see auction rooms, please add new auction from the server like so
 
-![alt text](https://github.com/teinnt/Auction-Hosting-Guarantee/tree/master/src/assets/readme.jpg?raw=true)
+![alt text](https://github.com/teinnt/Auction-Hosting-Guarantee/blob/master/src/assets/images/readme.jpg)
